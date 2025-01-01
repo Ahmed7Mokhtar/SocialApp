@@ -25,8 +25,7 @@ public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDTO
     {
         return await _context.AppUsers.Where(m => m.Id == request.Id).Select(m => new UserDTO
         {
-            Id = m.Id,
-            UserName = m.UserName
+            Username = m.UserName
         }).FirstOrDefaultAsync(cancellationToken);
     }
 }

@@ -25,8 +25,7 @@ public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, IEnumerable<U
     {
         return await _context.AppUsers.Select(m => new UserDTO
         {
-            Id = m.Id,
-            UserName = m.UserName
+            Username = m.UserName
         }).ToListAsync(cancellationToken);
     }
 }

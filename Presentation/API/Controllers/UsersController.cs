@@ -1,6 +1,7 @@
 using Application.Features.Users.DTOs;
 using Application.Features.Users.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -22,7 +23,8 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUserById(string id)
+        [Authorize]
+        public async Task<ActionResult<UserDTO>> GetUserById(string id)
         {
             var query = new GetUserByIdQuery(id);
             var result = await _mediator.Send(query);

@@ -1,5 +1,7 @@
 using Persistence.Extensions;
 using Application.Extenstions;
+using Infrastructure.Extensions;
+using API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
-
-builder.Services.AddCors();
+builder.Services.AddInfrastructureServices();
+builder.Services.AddAPIServices(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -27,12 +29,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.UseCors(cfg => 
 {
     cfg.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200", "https://localhost:4200");
 });
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
