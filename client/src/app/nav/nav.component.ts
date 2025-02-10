@@ -25,7 +25,6 @@ export class NavComponent implements OnInit {
     this.accountService.login(this.model).subscribe({
       next: () => {},
       error: err => {
-        this.toaster.error(err.error);
         this.isLoading = false;
       },
       complete: () => {

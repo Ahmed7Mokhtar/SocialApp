@@ -15,6 +15,7 @@ public class RegisterCommand : IRequest<UserDTO>
     [Required(ErrorMessage = "Username is required!")]
     public string UserName { get; set; } = null!;
     [Required(ErrorMessage = "Password is required!")]
+    [StringLength(8, MinimumLength = 4)]
     public string Password { get; set; } = null!;
 }
 

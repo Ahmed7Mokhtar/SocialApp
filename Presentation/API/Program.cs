@@ -2,6 +2,7 @@ using Persistence.Extensions;
 using Application.Extenstions;
 using Infrastructure.Extensions;
 using API.Extensions;
+using API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,9 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.UseMiddleware<ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

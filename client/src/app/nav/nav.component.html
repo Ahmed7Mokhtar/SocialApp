@@ -18,6 +18,9 @@
                         <button class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</button>
                     </li>
                 </ng-container>
+                <li class="nav-item">
+                    <button class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</button>
+                </li>
             </ul>
 
             <div *ngIf="(accountService.currentUser$ | async) as user" ngbDropdown>
