@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
+using Application.Features.Accounts.DTOs;
 using Application.Features.Users.DTOs;
 using Application.ServiceInterfaces;
 using Domain.Entities;

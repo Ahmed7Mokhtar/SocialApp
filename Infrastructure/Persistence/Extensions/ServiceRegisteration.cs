@@ -2,6 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence.Seed;
 
 namespace Persistence.Extensions;
 
@@ -13,6 +14,8 @@ public static class ServiceRegisteration
         {   
             opts.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
+
+        services.AddHostedService<DatabaseInitializationHostedService>();
 
         return services;
     }

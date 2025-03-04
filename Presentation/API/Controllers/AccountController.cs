@@ -1,4 +1,5 @@
 using Application.Features.Accounts.Commands;
+using Application.Features.Accounts.DTOs;
 using Application.Features.Users.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

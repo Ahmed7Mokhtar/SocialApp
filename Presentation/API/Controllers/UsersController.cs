@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class UsersController : BaseController
     {
         private readonly IMediator _mediator;
@@ -15,18 +16,25 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers()
         {
             var query = new GetUsersQuery();
             var result = await _mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        [Authorize]
-        public async Task<ActionResult<UserDTO>> GetUserById(string id)
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<UserDTO>> GetUserById(string id)
+        //{
+        //    var query = new GetUserByIdQuery(id);
+        //    var result = await _mediator.Send(query);
+        //    return Ok(result);
+        //}
+
+        [HttpGet("{username}")]
+        public async Task<ActionResult<MemberDTO>> GetUserByUsername(string username)
         {
-            var query = new GetUserByIdQuery(id);
+            var query = new GetUserByUsernameQuery(username);
             var result = await _mediator.Send(query);
             return Ok(result);
         }
